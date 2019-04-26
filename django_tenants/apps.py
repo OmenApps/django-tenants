@@ -21,11 +21,11 @@ class DjangoTenantsConfig(AppConfig):
 
         # Test for configuration recommendations. These are best practices,
         # they avoid hard to find bugs and unexpected behaviour.
-        if not hasattr(settings, 'TENANT_APPS'):
-            raise ImproperlyConfigured('TENANT_APPS setting not set')
+        if not hasattr(settings, 'TENANT_LISTING'):
+            raise ImproperlyConfigured('TENANT_LISTING setting not set')
 
-        if not settings.TENANT_APPS:
-            raise ImproperlyConfigured("TENANT_APPS is empty. "
+        if not settings.TENANT_LISTING:
+            raise ImproperlyConfigured("TENANT_LISTING is empty. "
                                        "Maybe you don't need this app?")
 
         if not hasattr(settings, 'TENANT_MODEL'):

@@ -38,8 +38,11 @@ class TenantSyncRouter(object):
             if not self.app_in_list(app_label, settings.SHARED_APPS):
                 return False
         else:
-            # ToDo: Check the schema name suffix and load the appropriate apps for that tenant type
-            if not self.app_in_list(app_label, settings.TENANT_APPS):
+            # Get the tenant_type from the schema_name
+            tenant_type = next(key for key in settings.TENANT_LISTING if connection.schema_name.endswith(key))
+
+            # Allow migrations for only those apps listed for the tenant_type
+            if not self.app_in_list(app_label, settings.TENANT_LISTING[tenant_type]):
                 return False
 
         return None

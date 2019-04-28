@@ -29,7 +29,7 @@ def public_schema():
 @register.simple_tag()
 def is_tenant_app(app):
     #return app['app_label'] in [tenant_app.split('.')[-1] for tenant_app in settings.TENANT_APPS]
-    return app['app_label'] in [tenant_app.split('.')[-1] for key in settings.TENANT_LISTING for app in settings.TENANT_LISTING[key]]
+    return app['app_label'] in [tenant_app.split('.')[-1] for key in settings.TENANT_LISTING for tenant_app in settings.TENANT_LISTING[key]]
 
 
 @register.simple_tag()
